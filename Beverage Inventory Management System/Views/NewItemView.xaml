@@ -1,0 +1,120 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+    xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:Serialization="clr-namespace:DevExpress.Xpf.LayoutControl.Serialization;assembly=DevExpress.Xpf.LayoutControl.v17.2"
+    xmlns:themeKeys="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys"
+    xmlns:internal="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal"
+    x:Class="Beverage_Inventory_Management_System.Views.NewItemView"
+             mc:Ignorable="d" Width="Auto" Height="Auto" d:DesignWidth="715.714" d:DesignHeight="435.714">
+ <dxwui:PageAdornerControl x:Name="pageAdornerControl" Header="Items" FontSize="13" Width="Auto">
+        <dxwui:PageAdornerControl.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5,-7,0,0">
+                        <TextBlock Text="ITEMS" FontSize="18" />
+                        <TextBlock Text="Add New" Margin="7,0,0,0" FontSize="18" />
+                    </StackPanel>
+                </DataTemplate>
+            </dxwui:PageAdornerControl.HeaderTemplate>   
+        <dxwui:NavigationFrame x:Name="NewItemNavigationFrame" AnimationType="SlideHorizontal">
+ 
+            <Grid>
+               
+                <dxlc:LayoutControl x:Name="___No_Name_" ItemSpace="5" Margin="0,10,0,80" Orientation="Vertical">
+                    <dxlc:LayoutGroup dx:ScrollViewerTouchBehavior.IsEnabled="True" Serialization:SerializableItem.TypeName="LayoutGroup">
+                    <dxlc:LayoutItem Label="Item Code: ">
+                        <dxe:TextEdit x:Name="ItemCodeTextEdit">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EventToCommand />
+                                </dxmvvm:Interaction.Behaviors>
+                            </dxe:TextEdit>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Brand: ">
+                        <dxe:TextEdit x:Name="ItemBrandTextEdit" />
+                    </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Name: ">
+                        <dxe:TextEdit x:Name="ItemNameTextEdit" />
+                    </dxlc:LayoutItem>
+                    <dxb:BarContainerControl HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0" />
+                    <dxlc:LayoutGroup dx:ScrollViewerTouchBehavior.IsEnabled="True" Serialization:SerializableItem.TypeName="LayoutGroup">
+                        <dxlc:LayoutItem Label="BarCode: ">
+                            <dxe:TextEdit x:Name="ItemBarcodeTextEdit" EditValueChanging="barcodeTextEdit_EditValueChanging" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="">
+                            <dxe:BarCodeEdit x:Name="BarcodeEdit" Width="200">
+                                <dxe:BarCodeEdit.StyleSettings>
+                                    <dxe:EAN13StyleSettings HighlightedTextBackground="Yellow" HighlightedTextForeground="Black" Visibility="Collapsed" />
+                                </dxe:BarCodeEdit.StyleSettings>
+                            </dxe:BarCodeEdit>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup dx:ScrollViewerTouchBehavior.IsEnabled="True" Serialization:SerializableItem.TypeName="LayoutGroup">
+                        <dxlc:LayoutItem Label="Volume or Weight: ">
+                            <dxe:ComboBoxEdit x:Name="ItemSizeComboBox" AutoComplete="True" ImmediatePopup="True">
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedTokenComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+                        <dx:SimpleButton x:Name="addSizeButton" Content="Add more" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="100" Click="simpleButton_Click" />
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup dx:ScrollViewerTouchBehavior.IsEnabled="True" Serialization:SerializableItem.TypeName="LayoutGroup">
+                        <dxlc:LayoutItem Label="Actual Price: ">
+                            <dxe:TextEdit x:Name="ItemActualPriceTextEdit" MaskType="Numeric" Mask="₨\.#,###,###,##0.00" MaskUseAsDisplayFormat="True" NullText="₨.0.00" NullValue="0" HorizontalContentAlignment="Right" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Sale Price: ">
+                            <dxe:TextEdit x:Name="ItemSalePriceTextEdit" MaskType="Numeric" Mask="₨\.#,###,###,##0.00" MaskUseAsDisplayFormat="True" NullText="₨.0.00" NullValue="0" HorizontalContentAlignment="Right" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Description: ">
+                        <dxe:TextEdit x:Name="ItemDescriptionTextEdit" Height="60" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Picture: ">
+                        <dxe:ImageEdit x:Name="ItemPicImageEdit" />
+                    </dxlc:LayoutItem>
+
+                    <dxe:FlyoutControl x:Name="flyoutControl" IsOpen="False" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="250" StaysOpen="True">
+                        <dxlc:LayoutControl x:Name="FLayoutControl" ItemSpace="5" Orientation="Vertical" Width="260" Height="130">
+                            <dxlc:LayoutItem Label="Unit: ">
+                                <dxe:TextEdit x:Name="newItemSizeUnitTextEdit" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Volume or Weight: ">
+                                <dxe:ComboBoxEdit x:Name="newItemSizeComboBox" AutoComplete="True" ImmediatePopup="True">
+                                    <dxe:ComboBoxEditItem Content="ML" />
+                                    <dxe:ComboBoxEditItem Content="L" />
+                                    <dxe:ComboBoxEditItem Content="G" />
+                                    <dxe:ComboBoxEditItem Content="KG" />
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem>
+                                <dx:SimpleButton x:Name="addNewItemSizeButton" Content="Add" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto" Click="flyoutButton_Click" />
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem>
+                                <dx:SimpleButton x:Name="cancelNewItemSizeButton" Content="Cancel" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dxwui:PageAdornerControl}}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutControl>
+                    </dxe:FlyoutControl>
+
+                </dxlc:LayoutControl>
+
+                <dxwui:AppBar x:Name="appBar" IsOpen="True" HideMode="Sticky" IsExitButtonEnabled="True">
+                    <dxwui:AppBarButton x:Name="ItemSaveButton" Label="Save" HorizontalAlignment="Center" dxwuin:Navigation.NavigateTo="NewItemView" AllowGlyphTheming="True" IsEllipseEnabled="False" Glyph="{dx:DXImageGrayscale Image=Save_32x32.png}" Click="ItemSaveButton_Click" />
+                    <dxwui:AppBarButton x:Name="ItemCancelButton" Label="Cancel" Glyph="{dx:DXImageOffice2013 Image=Cancel_32x32.png}" AllowGlyphTheming="True" IsEllipseEnabled="False" GlyphStretch="Uniform" HorizontalAlignment="Center" Click="ItemCancelButton_Click" />
+                    <dxwui:AppBarSeparator HorizontalAlignment="Right" />
+                </dxwui:AppBar>
+                    
+            </Grid>
+
+            </dxwui:NavigationFrame>
+    </dxwui:PageAdornerControl>
+
+                       </UserControl>
